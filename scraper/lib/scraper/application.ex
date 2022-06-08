@@ -3,13 +3,16 @@ defmodule Scraper.Application do
   # for more information on OTP Applications
   @moduledoc false
 
+  alias Scraper.{PageProducer, PageConsumer}
+
   use Application
 
   @impl true
   def start(_type, _args) do
     children = [
-      # Starts a worker by calling: Scraper.Worker.start_link(arg)
-      # {Scraper.Worker, arg}
+      PageProducer,
+      Supervisor.child_spec(PageConsumer, id: :consumer_a),
+      Supervisor.child_spec(PageConsumer, id: :consumer_b)
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
