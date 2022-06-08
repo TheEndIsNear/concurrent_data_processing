@@ -14,7 +14,7 @@ defmodule Scraper.PageProducer do
   @impl true
   def init(initial_state) do
     Logger.info("PageProducer init")
-    {:producer, initial_state, buffer_size: 1}
+    {:producer, initial_state}
   end
 
   @impl true
