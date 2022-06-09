@@ -22,7 +22,7 @@ defmodule Airports do
     |> Flow.reject(&(&1.type == "closed"))
     |> Flow.partition(key: {:key, :country})
     |> Flow.group_by(& &1.country)
-    |> Flow.on_trigger(fn acc, _partition_info, {_type, _id, _trigger} ->
+    |> Flow.on_trigger(fn acc ->
       # Show progressin IEx or use the data for something else.
       events =
         acc
