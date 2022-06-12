@@ -3,16 +3,14 @@ defmodule Scraper.Application do
   # for more information on OTP Applications
   @moduledoc false
 
-  alias Scraper.{PageProducer, PageConsumerSupervisor, OnlinePageProducerConsumer}
+  alias Scraper.ScrapingPipeline
 
   use Application
 
   @impl true
   def start(_type, _args) do
     children = [
-      PageProducer,
-      PageConsumerSupervisor,
-      OnlinePageProducerConsumer
+      ScrapingPipeline
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
