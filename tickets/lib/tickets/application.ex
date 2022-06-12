@@ -5,11 +5,13 @@ defmodule Tickets.Application do
 
   use Application
 
+  alias Tickets.{BookingsPipeline, NotificationsPipeline}
+
   @impl true
   def start(_type, _args) do
     children = [
-      # Starts a worker by calling: Tickets.Worker.start_link(arg)
-      # {Tickets.Worker, arg}
+      BookingsPipeline,
+      NotificationsPipeline
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

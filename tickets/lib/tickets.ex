@@ -1,18 +1,29 @@
 defmodule Tickets do
-  @moduledoc """
-  Documentation for `Tickets`.
-  """
+  def tickets_available?(_event) do
+    Process.sleep(Enum.random(100..200))
+    true
+  end
 
-  @doc """
-  Hello world.
+  def create_ticket(_user, _event) do
+    Process.sleep(Enum.random(250..1000))
+  end
 
-  ## Examples
+  def send_email(_user) do
+    Process.sleep(Enum.random(100..250))
+  end
 
-      iex> Tickets.hello()
-      :world
+  def insert_all_tickets(messages) do
+    Process.sleep(Enum.count(messages) * 250)
+    messages
+  end
 
-  """
-  def hello do
-    :world
+  @users [
+    %{id: "1", email: "foo@email.com"},
+    %{id: "2", email: "bar@email.com"},
+    %{id: "3", email: "baz@email.com"}
+  ]
+
+  def users_by_ids(ids) when is_list(ids) do
+    Enum.filter(@users, &(&1.id in ids))
   end
 end
